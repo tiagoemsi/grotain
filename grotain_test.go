@@ -27,7 +27,7 @@ func TestCalcInterval(test *testing.T) {
 		test.Run(
 			fmt.Sprintf("[%d]-%s", i, s.name),
 			func(t *testing.T) {
-				got := s.item.CalcInterval()
+				got := s.item.CalcInterval(4)
 				if got != s.want {
 					t.Errorf("\ngot: %v\nwant: %v", got, s.want)
 				}

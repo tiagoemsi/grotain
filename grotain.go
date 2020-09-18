@@ -9,7 +9,13 @@ type Cards struct {
 }
 
 // CalcInterval calculates the next revision in days
-func (c Cards) CalcInterval() int {
+func (c Cards) CalcInterval(quality int) int {
+
+	if quality < 3 {
+		return 1
+		// return int(math.Round(float64((c.interval / 2))))
+	}
+
 	// for n>2 I(n):=I(n-1)*EF
 	switch c.Interval {
 	case 0:
@@ -37,13 +43,7 @@ func (c *Cards) Review(quality int) *Cards {
 	// quality = [0 ~ 5]
 
 	c.Efactor = c.CalcEfactor(quality)
-
-	if quality < 3 {
-		c.Interval = 1
-		// c.interval = int(math.Round(float64((c.interval / 2))))
-	} else {
-		c.Interval = c.CalcInterval()
-	}
+	c.Interval = c.CalcInterval(quality)
 
 	// Store this data for use in the next review
 	return &Cards{c.Interval, c.Efactor}
