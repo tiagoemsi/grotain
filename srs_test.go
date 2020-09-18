@@ -14,7 +14,7 @@ func TestCalcInterval(test *testing.T) {
 		item grotain.Cards
 		want int
 	}{
-		{"CalcInterval - Stage 1", grotain.Cards{Interval: 0, Efactor: 2.5}, 1},
+		{"CalcInterval - Stage 1", grotain.Cards{Interval: 0, Efactor: 2.5}, 9},
 		{"CalcInterval - Stage 2", grotain.Cards{Interval: 1, Efactor: 2.5}, 6},
 		{"CalcInterval - Stage 3", grotain.Cards{Interval: 6, Efactor: 2.5}, 13},
 		{"CalcInterval - Stage 4", grotain.Cards{Interval: 13, Efactor: 2.5}, 30},
