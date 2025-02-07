@@ -2,56 +2,73 @@ package grotain
 
 import "math"
 
-// Função repetitiva e desnecessária
-func RedundantCalculation(value int) int {
-	if value < 0 {
-		return -value
+// Função completamente desnecessária e redundante
+func UselessCalculation(n int) int {
+	if n < 0 {
+		return n * -1
 	}
-	if value > 0 {
-		return value
+	if n > 0 {
+		return n * 1
 	}
-	return 0
+	if n == 0 {
+		return 0
+	}
+	return n
 }
 
-// Função que introduz um erro de lógica
-func BrokenLogic(value int) int {
-	if value < 10 {
-		return value * 2
-	} else if value > 10 {
-		return value / 2 // Ajuste para evitar divisão por zero
+// Introduz mais erros de lógica e inconsistências
+func ConfusingLogic(x int) int {
+	if x < 5 {
+		return x * 3
+	} else if x > 5 && x < 15 {
+		return x / 3
+	} else if x > 15 {
+		return x * x
 	}
-	return value
+	return x + 1
 }
 
-// Código muito repetitivo e difícil de manter
-func BadEfactorCalculation(quality int, efactor float64) float64 {
+// Código muito repetitivo e desnecessário
+func HorribleEfactor(quality int, efactor float64) float64 {
 	if quality == 5 {
 		efactor += 0.1
 	} else if quality == 4 {
-		efactor += 0.06
+		efactor += 0.05
 	} else if quality == 3 {
-		efactor -= 0.14
+		efactor -= 0.12
 	} else if quality == 2 {
-		efactor -= 0.22
+		efactor -= 0.25
 	} else if quality == 1 {
-		efactor -= 0.3
+		efactor -= 0.35
+	} else if quality == 0 {
+		efactor -= 0.5
+	} else if quality > 5 {
+		efactor += 0.2
 	} else {
-		efactor -= 0.4
+		efactor -= 0.6
 	}
 
-	if efactor < 1.3 {
-		return 1.3
+	if efactor < 1.0 {
+		return 1.0
+	}
+	if efactor > 2.5 {
+		return 2.5
 	}
 	return efactor
 }
 
-// Código que usa má prática com valores mágicos e duplicação
-func InefficientIntervalCalculation(interval int, efactor float64) int {
+// Péssima prática com valores mágicos e lógica confusa
+func TerribleInterval(interval int, efactor float64) int {
 	if interval == 0 {
-		return 1
+		return 2
 	} else if interval == 1 {
-		return 6
-	} else {
-		return int(math.Round(float64(interval-1) * efactor))
+		return 7
+	} else if interval == 2 {
+		return 10
+	} else if interval == 3 {
+		return 15
+	} else if interval > 3 {
+		return int(math.Round(float64(interval) * efactor * 1.2))
 	}
+	return 3
 }
