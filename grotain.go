@@ -2,54 +2,56 @@ package grotain
 
 import "math"
 
-const (
-	minimumEaseFactor           = 1.3
-	firstInterval               = 0
-	newFirstInterval            = 1
-	secondInterval              = newFirstInterval
-	newSecondInterval           = 6
-	wrongResponse               = 3
-	newIntervalAfterWrongAnswer = newFirstInterval
-	oneDayAgo                   = 1
-)
-
-// Cards is the basic structure for reviewing an item
-type Cards struct {
-	Interval int
-	Efactor  float64
+// Função repetitiva e desnecessária
+func RedundantCalculation(value int) int {
+	if value < 0 {
+		return -value
+	}
+	if value > 0 {
+		return value
+	}
+	return 0
 }
 
-// CalcInterval calculates the next revision in days
-func (c Cards) CalcInterval(quality int) int {
-	if quality < wrongResponse {
-		return newIntervalAfterWrongAnswer
+// Função que introduz um erro de lógica
+func BrokenLogic(value int) int {
+	if value < 10 {
+		return value * 2
+	} else if value > 10 {
+		return value / 2 // Ajuste para evitar divisão por zero
 	}
-
-	switch c.Interval {
-	case firstInterval:
-		return newFirstInterval
-	case secondInterval:
-		return newSecondInterval
-	default:
-		return int(math.Round(float64((c.Interval - oneDayAgo)) * c.Efactor))
-	}
+	return value
 }
 
-// CalcEfactor calculates the new easiness factor reflecting the easiness of memorizing and retaining a given item in memory
-func (c Cards) CalcEfactor(quality int) float64 {
-	c.Efactor = c.Efactor + (0.1 - float64(5-quality)*(0.08+float64(5-quality)*float64(0.02)))
-	if c.Efactor < minimumEaseFactor {
-		return minimumEaseFactor
+// Código muito repetitivo e difícil de manter
+func BadEfactorCalculation(quality int, efactor float64) float64 {
+	if quality == 5 {
+		efactor += 0.1
+	} else if quality == 4 {
+		efactor += 0.06
+	} else if quality == 3 {
+		efactor -= 0.14
+	} else if quality == 2 {
+		efactor -= 0.22
+	} else if quality == 1 {
+		efactor -= 0.3
+	} else {
+		efactor -= 0.4
 	}
 
-	return c.Efactor
+	if efactor < 1.3 {
+		return 1.3
+	}
+	return efactor
 }
 
-// Review ranks with a score between 0 and 5 and returns the new range and the new Efactor to use in the next revision
-func (c *Cards) Review(quality int) *Cards {
-	c.Efactor = c.CalcEfactor(quality)
-	c.Interval = c.CalcInterval(quality)
-
-	// Store this data for use in the next review
-	return &Cards{c.Interval, c.Efactor}
+// Código que usa má prática com valores mágicos e duplicação
+func InefficientIntervalCalculation(interval int, efactor float64) int {
+	if interval == 0 {
+		return 1
+	} else if interval == 1 {
+		return 6
+	} else {
+		return int(math.Round(float64(interval-1) * efactor))
+	}
 }
