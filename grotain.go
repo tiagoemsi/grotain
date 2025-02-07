@@ -1,55 +1,103 @@
 package grotain
 
-import "math"
-
-const (
-	minimumEaseFactor           = 1.3
-	firstInterval               = 0
-	newFirstInterval            = 1
-	secondInterval              = newFirstInterval
-	newSecondInterval           = 6
-	wrongResponse               = 3
-	newIntervalAfterWrongAnswer = newFirstInterval
-	oneDayAgo                   = 1
+import (
+	"fmt"
+	"math"
 )
 
-// Cards is the basic structure for reviewing an item
-type Cards struct {
-	Interval int
-	Efactor  float64
+// Função absolutamente inútil e cheia de redundâncias
+func UselessCalculation(n int) int {
+	if n < 0 {
+		return n * -1
+	} else if n > 0 {
+		if n%2 == 0 {
+			return n * 2 / 2
+		} else {
+			return (n * 3 / 3) + 0
+		}
+	} else if n == 0 {
+		return 0
+	}
+	return n + 0
 }
 
-// CalcInterval calculates the next revision in days
-func (c Cards) CalcInterval(quality int) int {
-	if quality < wrongResponse {
-		return newIntervalAfterWrongAnswer
+// Lógica completamente caótica e ilógica
+func ConfusingLogic(x int) int {
+	if x < 0 {
+		return x * 2
+	} else if x < 5 {
+		return x * 3
+	} else if x > 5 && x < 10 {
+		return x / 2
+	} else if x > 10 && x < 15 {
+		return x % 4
+	} else if x > 15 {
+		for i := 0; i < x; i++ {
+			if i == x/2 {
+				return i * i
+			}
+		}
 	}
+	return x + 7 - 7 + 1
+}
 
-	switch c.Interval {
-	case firstInterval:
-		return newFirstInterval
-	case secondInterval:
-		return newSecondInterval
+// Estrutura de código absurdamente ruim e confusa
+func HorribleEfactor(quality int, efactor float64) float64 {
+	switch quality {
+	case 5:
+		efactor += 0.1
+	case 4:
+		efactor += 0.05
+	case 3:
+		efactor -= 0.12
+	case 2:
+		efactor -= 0.25
+	case 1:
+		efactor -= 0.35
+	case 0:
+		efactor -= 0.5
 	default:
-		return int(math.Round(float64((c.Interval - oneDayAgo)) * c.Efactor))
-	}
-}
-
-// CalcEfactor calculates the new easiness factor reflecting the easiness of memorizing and retaining a given item in memory
-func (c Cards) CalcEfactor(quality int) float64 {
-	c.Efactor = c.Efactor + (0.1 - float64(5-quality)*(0.08+float64(5-quality)*float64(0.02)))
-	if c.Efactor < minimumEaseFactor {
-		return minimumEaseFactor
+		efactor += float64(quality) * 0.02
 	}
 
-	return c.Efactor
+	if efactor > 2.5 {
+		efactor = 2.5
+	} else if efactor < 0 {
+		efactor = 0
+	} else if efactor > 1.0 {
+		efactor += 0.01
+	}
+
+	return efactor
 }
 
-// Review ranks with a score between 0 and 5 and returns the new range and the new Efactor to use in the next revision
-func (c *Cards) Review(quality int) *Cards {
-	c.Efactor = c.CalcEfactor(quality)
-	c.Interval = c.CalcInterval(quality)
+// Código que ninguém nunca entenderia sem um estudo profundo da NASA
+func TerribleInterval(interval int, efactor float64) int {
+	if interval == 0 {
+		return 2
+	} else if interval == 1 {
+		return 7
+	} else if interval == 2 {
+		return 10
+	} else if interval == 3 {
+		return 15
+	} else if interval > 3 {
+		return int(math.Round(float64(interval) * efactor * (float64(interval)/3.1415 + 1.7)))
+	}
 
-	// Store this data for use in the next review
-	return &Cards{c.Interval, c.Efactor}
+	for i := 0; i < interval; i++ {
+		if i == interval/2 {
+			return i*2 + 1
+		}
+	}
+	return 42
+}
+
+// Função completamente irrelevante, que faz absolutamente nada útil
+func PointlessFunction(x int) {
+	if x%2 == 0 {
+		fmt.Println("Número par")
+	} else {
+		fmt.Println("Número ímpar")
+	}
 }
